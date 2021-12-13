@@ -27,17 +27,21 @@ namespace SangriaHealthCenter
         {
             string connetionString = null;
             MySqlConnection cnn;
-            connetionString = "server=localhost;database=database_test;uid=root;pwd=example;";
+            connetionString = "server=localhost;database=db_test;uid=root;pwd=example;";
             cnn = new MySqlConnection(connetionString);
             try
             {
                 cnn.Open();
                 MessageBox.Show("Connection Open ! ");
+                MySqlCommand Create_table = new MySqlCommand(@" CREATE TABLE IF NOT EXISTS `123`  (id INT NOT NULL AUTO_INCREMENT, action VARCHAR(15) NOT NULL,  PRIMARY KEY (id)) COLLATE='utf8_general_ci' ENGINE=InnoDB;", cnn);
+                MySqlCommand insertValue = new MySqlCommand(@"INSERT INTO `123` (id, action) VALUES(3,'SASA');", cnn);
+                Create_table.ExecuteNonQuery();
+                insertValue.ExecuteNonQuery();
                 cnn.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Can not open connection ! ");
+                MessageBox.Show("Can not open connection ! " + ex);
             }
         }
 
