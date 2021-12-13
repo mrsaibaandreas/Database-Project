@@ -28,6 +28,7 @@ namespace SangriaHealthCenter
                 name VARCHAR(20) NOT NULL,
                 surname VARCHAR(20) NOT NULL,
                 bloodbank INT(6) NOT NULL);";
+        
         const String CreateTablePatients =
           @"CREATE TABLE IF NOT EXISTS `Patients`( 
                 p_id INT(6) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
