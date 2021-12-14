@@ -39,14 +39,35 @@ namespace SangriaHealthCenter
                 phone VARCHAR(10) NOT NULL,
                 hospital INT(6) NOT NULL);";
 
+        const String CreateTableLaboratory = 
+            @"CREATE TABLE IF NOT EXISTS Laboratory( 
+                l_id INT(6) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,  
+                address VARCHAR(50) NOT NULL,
+                bloodbank_id INT(6) NOT NULL,
+                inventory_id INT(6) NOT NULL, 
+                hospital_id INT(6) NOT NULL );";
+
+        const String CreateTableBloodBag =
+            @"CREATE TABLE IF NOT EXISTS BloodBag( 
+                bb_id INT(6) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                bloodbank_id INT(6) UNSIGNED NOT NULL,
+                bb_group VARCHAR(3) NOT NULL CHECK(bb_group IN('0-', '0+', 'A-', 'A+', 'B-', 'B+', 'AB-', 'AB+')),
+                content VARCHAR(1) NOT NULL CHECK(content IN('B','T','P')),
+                donor_id INT(6) UNSIGNED NOT NULL );";
+
+
         public String InitTablesQueries()
         {
-            String initQueries = CreateTableVolunteers + 
-                                CreateTableDonors + 
-                                CreateTablePatients;
+            String initQueries = CreateTableVolunteers +
+                                CreateTableDonors +
+                                CreateTablePatients +
+                                CreateTableLaboratory +
+                                CreateTableBloodBag;
+                                
 
             return initQueries;
         }
 
     }
 }
+    
