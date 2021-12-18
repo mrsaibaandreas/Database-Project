@@ -27,7 +27,7 @@ namespace SangriaHealthCenter
         {
             string connetionString = null;
             MySqlConnection cnn;
-            connetionString = "server=localhost;database=db_test;uid=root;pwd=example;";
+            connetionString = "server=localhost;database=database_test;uid=root;pwd=example;";
             cnn = new MySqlConnection(connetionString);
             try
             {
