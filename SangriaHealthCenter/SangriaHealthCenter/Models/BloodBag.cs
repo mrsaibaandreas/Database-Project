@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SangriaHealthCenter.Models
 {
-    class   
+    class BloodBag
     {
     }
 }
