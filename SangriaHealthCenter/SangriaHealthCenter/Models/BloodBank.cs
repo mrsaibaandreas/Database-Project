@@ -8,5 +8,10 @@ namespace SangriaHealthCenter.Models
 {
     class BloodBank
     {
+        private uint b_id;
+
+        private String address;
+
+        private float expenses;
     }
 }

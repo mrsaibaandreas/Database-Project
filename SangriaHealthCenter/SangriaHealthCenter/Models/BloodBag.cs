@@ -8,5 +8,11 @@ namespace SangriaHealthCenter.Models
 {
     class BloodBag
     {
+        private uint bb_id;
+        private uint donor;
+        private uint bloodbank;
+
+        private String b_group;
+        private String content;
     }
 }

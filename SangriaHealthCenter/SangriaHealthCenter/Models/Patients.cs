@@ -8,5 +8,18 @@ namespace SangriaHealthCenter.Models
 {
     class Patients
     {
+
+        private uint p_id;
+        private uint hospital;
+
+        private String b_group;
+        private String phone;
+        private String name;
+        private String surname;
+        private String email;
+
+        private bool emergency;
     }
+
+
 }

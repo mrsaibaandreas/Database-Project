@@ -8,5 +8,11 @@ namespace SangriaHealthCenter.Models
 {
     class Laboratory
     {
+        private uint l_id;
+        private uint bloodbank;
+        private uint hospital;
+        private uint inventory;
+
+        private String address;
     }
 }

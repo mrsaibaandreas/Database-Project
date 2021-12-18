@@ -8,5 +8,9 @@ namespace SangriaHealthCenter.Models
 {
     class Inventory
     {
+
+        private uint i_id;
+
+        private String item;
     }
 }
