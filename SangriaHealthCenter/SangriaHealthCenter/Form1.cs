@@ -27,7 +27,7 @@ namespace SangriaHealthCenter
         {
             string connetionString = null;
             MySqlConnection cnn;
-            connetionString = "server=localhost;database=database_test;uid=root;pwd=example;";
+            connetionString = "server=localhost;database=db_test;uid=root;pwd=example;";
             cnn = new MySqlConnection(connetionString);
             try
             {
@@ -35,10 +35,17 @@ namespace SangriaHealthCenter
                 MessageBox.Show("Connection Open!");
 
                 Queries Q = new Queries();
-                MySqlCommand createTables;
-                createTables = new MySqlCommand(Q.InitTablesQueries(), cnn);
-                createTables.ExecuteNonQuery();
+                MySqlCommand dropTables, createTables, createFKs;
+                dropTables = new MySqlCommand(Q.DropTables(), cnn);
+                
 
+                createTables = new MySqlCommand(Q.InitTablesQueries(), cnn);
+                createFKs = new MySqlCommand(Q.InitFKs(), cnn);
+
+                createTables.ExecuteNonQuery();
+                createFKs.ExecuteNonQuery();
+
+                //dropTables.ExecuteNonQuery();   //DELETING TABLES FOR TESTING PURPUOSES ONLY
                 cnn.Close();
             }
             catch (Exception ex)
