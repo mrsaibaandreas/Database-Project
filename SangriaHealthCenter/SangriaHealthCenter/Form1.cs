@@ -35,15 +35,17 @@ namespace SangriaHealthCenter
                 MessageBox.Show("Connection Open!");
 
                 Queries Q = new Queries();
-                MySqlCommand dropTables, createTables, createFKs;
+                MySqlCommand dropTables, createTables, createFKs, populateTables;
                 dropTables = new MySqlCommand(Q.DropTables(), cnn);
                 
 
                 createTables = new MySqlCommand(Q.InitTablesQueries(), cnn);
                 createFKs = new MySqlCommand(Q.InitFKs(), cnn);
+                populateTables = new MySqlCommand(Q.populateTables(), cnn);
 
                 createTables.ExecuteNonQuery();
                 createFKs.ExecuteNonQuery();
+                populateTables.ExecuteNonQuery();
 
                 //dropTables.ExecuteNonQuery();   //DELETING TABLES FOR TESTING PURPUOSES ONLY
                 cnn.Close();
