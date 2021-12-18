@@ -70,7 +70,7 @@ namespace SangriaHealthCenter
 				tourniquet INT(6) UNSIGNED DEFAULT 0,
 				seringe	INT(6) UNSIGNED DEFAULT 0,
 				lancet INT(6) UNSIGNED DEFAULT 0,
-				spoges INT(6) UNSIGNED DEFAULT 0,
+				sponges INT(6) UNSIGNED DEFAULT 0,
 				glucometers	INT(6) UNSIGNED DEFAULT 0,
 				sharps_container INT(6) UNSIGNED DEFAULT 0);";
 
@@ -78,7 +78,7 @@ namespace SangriaHealthCenter
                 @"CREATE TABLE IF NOT EXISTS MedicalStaff(	
                 m_id INT(6) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
                 role VARCHAR(1) NOT NULL CHECK(role IN('d','n')),
-                expenses FLOAT(6,2) NOT NULL,
+                salary FLOAT(6,2) NOT NULL,
                 hospital INT(6) UNSIGNED,
                 laboratory INT(6) UNSIGNED);";
 
@@ -134,12 +134,14 @@ namespace SangriaHealthCenter
                 REFERENCES BloodBank(b_id) 
                 ON DELETE CASCADE;";
 
+
             const String FkLaboratoryOfBloodbank =
                 @"ALTER TABLE Laboratory
                 ADD CONSTRAINT fk_laboratory_in_bloodbank
                 FOREIGN KEY (bloodbank) 
                 REFERENCES BloodBank(b_id) 
                 ON DELETE SET NULL;";
+
 
             const String FkLaboratoryOfHospital =
                 @"ALTER TABLE Laboratory
@@ -207,6 +209,7 @@ namespace SangriaHealthCenter
 
         public String populateTables()
         {
+
             const String PopulateBloodBank =
                 @"INSERT INTO `BloodBank` (`b_id`, `address`, `expenses`)
                     VALUES
@@ -284,6 +287,7 @@ namespace SangriaHealthCenter
                    PopulateBloodBag +
                    PopulateVolunteers +
                    PopulatePacients;
+
         }
 
     }
