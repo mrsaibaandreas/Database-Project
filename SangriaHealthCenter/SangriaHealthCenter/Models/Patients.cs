@@ -16,7 +16,7 @@ namespace SangriaHealthCenter.Models
         private String phone;
         private String name;
         private String surname;
-
+            
         private bool emergency;
     }
 
