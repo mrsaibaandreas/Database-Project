@@ -298,7 +298,7 @@ VALUES('1', 'SCJ de Urgență Deva', 'Deva Bulevardul 22 Decembrie nr. 58', '1')
         ('4', 'Resita', '5', '9', '4'),
         ('5', 'Arad', '4', '10', '5');";
 
-            const String PopulateMedicalStaff =
+            const String PopulateInventory =
                 @"INSERT INTO `Inventory` (`i_id`, `needles`, `vacutainers`, `gloves`, `bloodbags`, `tourniquet`, `seringe`, `lancet`, `spoges`, `glucometers`, `sharps_container`)
 VALUES('1', '200', '130', '40', '5', '3', '30', '10', '41', '10','11'),
     ('2', '320', '13', '30', '25', '4', '23', '12', '12', '6','12'),
