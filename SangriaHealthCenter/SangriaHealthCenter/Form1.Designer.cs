@@ -38,7 +38,7 @@ namespace SangriaHealthCenter
             this.hospitals = new System.Windows.Forms.Button();
             this.laboratories = new System.Windows.Forms.Button();
             this.bloodBank = new System.Windows.Forms.Button();
-            this.bloodReserves = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             this.doctorLogin = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -141,16 +141,16 @@ namespace SangriaHealthCenter
             this.bloodBank.UseVisualStyleBackColor = true;
             this.bloodBank.Click += new System.EventHandler(this.bloodBank_Click);
             // 
-            // bloodReserves
+            // button10
             // 
-            this.bloodReserves.Location = new System.Drawing.Point(16, 434);
-            this.bloodReserves.Margin = new System.Windows.Forms.Padding(4);
-            this.bloodReserves.Name = "bloodReserves";
-            this.bloodReserves.Size = new System.Drawing.Size(125, 32);
-            this.bloodReserves.TabIndex = 9;
-            this.bloodReserves.Text = "Blood Reserves";
-            this.bloodReserves.UseVisualStyleBackColor = true;
-            this.bloodReserves.Click += new System.EventHandler(this.bloodReserves_Click);
+            this.button10.Location = new System.Drawing.Point(16, 434);
+            this.button10.Margin = new System.Windows.Forms.Padding(4);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(125, 32);
+            this.button10.TabIndex = 9;
+            this.button10.Text = "Blood Reserves";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.bloodReserves_Click);
             // 
             // doctorLogin
             // 
@@ -168,7 +168,7 @@ namespace SangriaHealthCenter
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.doctorLogin);
-            this.Controls.Add(this.bloodReserves);
+            this.Controls.Add(this.button10);
             this.Controls.Add(this.bloodBank);
             this.Controls.Add(this.laboratories);
             this.Controls.Add(this.hospitals);
@@ -196,7 +196,7 @@ namespace SangriaHealthCenter
         private System.Windows.Forms.Button hospitals;
         private System.Windows.Forms.Button laboratories;
         private System.Windows.Forms.Button bloodBank;
-        private System.Windows.Forms.Button bloodReserves;
+        private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button doctorLogin;
     }
 }
