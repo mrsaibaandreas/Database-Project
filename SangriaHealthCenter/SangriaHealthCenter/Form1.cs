@@ -23,7 +23,7 @@ namespace SangriaHealthCenter
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void connect_Click(object sender, EventArgs e)
         {
             string connetionString = null;
             MySqlConnection cnn;
@@ -35,15 +35,17 @@ namespace SangriaHealthCenter
                 MessageBox.Show("Connection Open!");
 
                 Queries Q = new Queries();
-                MySqlCommand dropTables, createTables, createFKs;
+                MySqlCommand dropTables, createTables, createFKs, populateTables;
                 dropTables = new MySqlCommand(Q.DropTables(), cnn);
                 
 
                 createTables = new MySqlCommand(Q.InitTablesQueries(), cnn);
                 createFKs = new MySqlCommand(Q.InitFKs(), cnn);
+                populateTables = new MySqlCommand(Q.populateTables(), cnn);
 
                 createTables.ExecuteNonQuery();
                 createFKs.ExecuteNonQuery();
+                populateTables.ExecuteNonQuery();
 
                 //dropTables.ExecuteNonQuery();   //DELETING TABLES FOR TESTING PURPUOSES ONLY
                 cnn.Close();
@@ -54,22 +56,47 @@ namespace SangriaHealthCenter
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void donors_Click(object sender, EventArgs e)
         {
 
         }
     
-        private void button7_Click(object sender, EventArgs e)
+        private void hospitals_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void volunteers_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        private void bloodReserves_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void patients_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void laboratories_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void medicalStaff_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void inventory_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bloodBank_Click(object sender, EventArgs e)
         {
 
         }
