@@ -25,7 +25,7 @@ namespace SangriaHealthCenter
                 email VARCHAR(30) NOT NULL, 
                 name VARCHAR(20) NOT NULL,
                 surname VARCHAR(20) NOT NULL, 
-                bloodbank INT(6) UNSIGNED NOT NULL);";
+                bloodbank INT(6) UNSIGNED );";
         
         const String CreateTablePatients =
           @"CREATE TABLE IF NOT EXISTS Patients( 
@@ -48,7 +48,7 @@ namespace SangriaHealthCenter
                 h_id INT(6) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
                 name VARCHAR(30),    
                 address VARCHAR(50),    
-                inventory INT(6) UNSIGNED NOT NULL);";
+                inventory INT(6) UNSIGNED );";
 
         const String CreateTableInventory =
             @"CREATE TABLE IF NOT EXISTS Inventory(	
@@ -69,8 +69,8 @@ namespace SangriaHealthCenter
                 m_id INT(6) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
                 role VARCHAR(1) NOT NULL CHECK(role IN('d','n')),
                 expenses FLOAT(6,2) NOT NULL,
-                hospital INT(6) UNSIGNED NOT NULL,
-                laboratory INT(6) UNSIGNED NOT NULL);";
+                hospital INT(6) UNSIGNED,
+                laboratory INT(6) UNSIGNED);";
 
         const String CreateTableBloodBag =
             @"CREATE TABLE IF NOT EXISTS BloodBag( 
@@ -85,48 +85,48 @@ namespace SangriaHealthCenter
 	            l_id INT(6) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 	            address VARCHAR(50) NOT NULL,
                 bloodbank INT(6) UNSIGNED, 
-                inventory INT(6) UNSIGNED NOT NULL,
-                hospital INT(6) UNSIGNED NOT NULL);";
+                inventory INT(6) UNSIGNED,
+                hospital INT(6) UNSIGNED);";
 
 
         //CREATE FOREIGN KEYS
 
-        const String FkPatientInHospital =
+        const String FkPatientInHospital =  
             @"ALTER TABLE Patients
                 ADD CONSTRAINT fk_patient_in_hospital
                 FOREIGN KEY (hospital) 
                 REFERENCES Hospital(h_id) 
-                ON DELETE CASCADE;";
+                ON DELETE RESTRICT;";
 
-        const String FkVolunteerInBloodbank =
+        const String FkVolunteerInBloodbank =  
             @"ALTER TABLE Volunteers
                 ADD CONSTRAINT fk_volunteer_at_bloodbank
                 FOREIGN KEY (bloodbank) 
                 REFERENCES BloodBank(b_id) 
-                ON DELETE CASCADE;";
+                ON DELETE RESTRICT;";
 
-        const String FkDonorAtBloodbank =
+        const String FkDonorAtBloodbank =  
             @"ALTER TABLE Donors
                 ADD CONSTRAINT fk_donor_at_bloodbank
                 FOREIGN KEY (bloodbank) 
                 REFERENCES BloodBank(b_id) 
                 ON DELETE CASCADE;";
 
-        const String FkLaboratoryOfBloodbank =
+        const String FkLaboratoryOfBloodbank = // CHECK!!!!
             @"ALTER TABLE Laboratory
                 ADD CONSTRAINT fk_laboratory_in_bloodbank
                 FOREIGN KEY (bloodbank) 
                 REFERENCES BloodBank(b_id) 
-                ON DELETE CASCADE;";
+                ON DELETE SET NULL;";
 
-        const String FkLaboratoryOfHospital =
+        const String FkLaboratoryOfHospital =  //  CHECK!!!
             @"ALTER TABLE Laboratory
                 ADD CONSTRAINT fk_laboratory_in_hospital
                 FOREIGN KEY (hospital) 
                 REFERENCES BloodBank(b_id) 
-                ON DELETE CASCADE;";
+                ON DELETE SET NULL;";
 
-        const String FkBloodbagOfDonor =
+        const String FkBloodbagOfDonor =   
             @"ALTER TABLE BloodBag
                 ADD CONSTRAINT fk_bloodbag_of_donor
                 FOREIGN KEY (donor) 
@@ -138,21 +138,21 @@ namespace SangriaHealthCenter
                 ADD CONSTRAINT fk_bloodbag_in_bloodbank
                 FOREIGN KEY (bloodbank) 
                 REFERENCES BloodBank(b_id) 
-                ON DELETE CASCADE;";
+                ON DELETE RESTRICT;";
 
         const String FkMedicalstaffOfHospital =
             @"ALTER TABLE MedicalStaff
                 ADD CONSTRAINT fk_medicalstaff_of_hospital
                 FOREIGN KEY (hospital) 
                 REFERENCES Hospital(h_id) 
-                ON DELETE CASCADE;";
+                ON DELETE RESTRICT;";
 
         const String FkMedicalstaffOfLaboratory =
             @"ALTER TABLE MedicalStaff
                 ADD CONSTRAINT fk_medicalstaff_of_laboratory
                 FOREIGN KEY (laboratory) 
                 REFERENCES Laboratory(l_id) 
-                ON DELETE CASCADE;";
+                ON DELETE RESTRICT;";
 
         const String FkInventoryOfLaboratory =
             @"ALTER TABLE Laboratory
