@@ -300,7 +300,7 @@ namespace SangriaHealthCenter
                     ('5', 'Arad', '4', '10', '5');";
 
             const String PopulateInventory =
-                @"INSERT INTO `Inventory` (`i_id`, `needles`, `vacutainers`, `gloves`, `bloodbags`, `tourniquet`, `seringe`, `lancet`, `spoges`, `glucometers`, `sharps_container`)
+                @"INSERT INTO `Inventory` (`i_id`, `needles`, `vacutainers`, `gloves`, `bloodbags`, `tourniquet`, `seringe`, `lancet`, `sponges`, `glucometers`, `sharps_container`)
                 VALUES
                     ('1', '200', '130', '40', '5', '3', '30', '10', '41', '10','11'),
                     ('2', '320', '13', '30', '25', '4', '23', '12', '12', '6','12'),
@@ -359,9 +359,9 @@ namespace SangriaHealthCenter
                    PopulateDonors +
                    PopulateBloodBag +
                    PopulateVolunteers +
-                   PopulatePacients +
                    PopulateInventory +
                    PopulateHospital +
+                   PopulatePacients +
                    PopulateLaboratory +
                    PopulateMedicalStaff;
 
