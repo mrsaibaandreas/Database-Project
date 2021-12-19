@@ -6,20 +6,66 @@ namespace SangriaHealthCenter
 {
     public partial class Form3 : Form
     {
-        private MySqlConnection _cnn;
-        public Form3(MySqlConnection cnn)
+       
+        public Form3()
         {
-            this._cnn = cnn;
+           
             InitializeComponent();
         }
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        public static string connetionString = "server=localhost;database=db_test;uid=root;pwd=example;";
+
+        static MySqlConnection cnn = new MySqlConnection(connetionString);
+
+        private void initDB()
+        {
+            /* string connetionString = null;
+             MySqlConnection cnn;
+             connetionString = "server=localhost;database=db_test;uid=root;pwd=example;";
+             cnn = new MySqlConnection(connetionString);*/
+            try
+            {
+                cnn.Open();
+
+                Queries Q = new Queries();
+                MySqlCommand dropTables, createTables, createFKs, populateTables;
+
+                dropTables = new MySqlCommand(Q.DropTables(), cnn);
+                createTables = new MySqlCommand(Q.InitTablesQueries(), cnn);
+                createFKs = new MySqlCommand(Q.InitFKs(), cnn);
+                populateTables = new MySqlCommand(Q.populateTables(), cnn);
+
+                createTables.ExecuteNonQuery();
+                createFKs.ExecuteNonQuery();
+                populateTables.ExecuteNonQuery();
+
+                //dropTables.ExecuteNonQuery();   //DELETING TABLES FOR TESTING PURPUOSES ONLY
+                cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Can not open connection ! " + ex);
+            }
+        }
+
 
         private void login_Click(object sender, EventArgs e)
         {
             LoginQueries logIn = new LoginQueries(StaffId.Text, password.Text);
-            if (logIn.CheckUserAndPassword(_cnn))
-                Console.WriteLine("works");
+            if (logIn.CheckUserAndPassword(cnn))
+            {
+                Form1 f1 = new Form1(cnn);
+                f1.ShowDialog();
+                initDB();
+            }
         }
 
-     
+        private void StaffId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

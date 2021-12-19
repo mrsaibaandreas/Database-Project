@@ -13,53 +13,15 @@ namespace SangriaHealthCenter
 {
     public partial class Form1 : Form
     {
-        public Form1()
+
+        private MySqlConnection cnn;
+        public Form1(MySqlConnection cnn)
         {
+            this.cnn = cnn;
             InitializeComponent();
           
 
-        }
-
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        public static string connetionString = "server=localhost;database=db_test;uid=root;pwd=example;";
-
-        static MySqlConnection cnn = new MySqlConnection(connetionString);
-
-        private void connect_Click(object sender, EventArgs e)
-        {
-           /* string connetionString = null;
-            MySqlConnection cnn;
-            connetionString = "server=localhost;database=db_test;uid=root;pwd=example;";
-            cnn = new MySqlConnection(connetionString);*/
-            try
-            {
-                cnn.Open();
-                MessageBox.Show("Connection Open!");
-
-                Queries Q = new Queries();
-                MySqlCommand dropTables, createTables, createFKs, populateTables;
-
-                dropTables = new MySqlCommand(Q.DropTables(), cnn);                
-                createTables = new MySqlCommand(Q.InitTablesQueries(), cnn);
-                createFKs = new MySqlCommand(Q.InitFKs(), cnn);
-                populateTables = new MySqlCommand(Q.populateTables(), cnn);
-
-                createTables.ExecuteNonQuery();
-                createFKs.ExecuteNonQuery();
-                populateTables.ExecuteNonQuery();
-
-                //dropTables.ExecuteNonQuery();   //DELETING TABLES FOR TESTING PURPUOSES ONLY
-                cnn.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Can not open connection ! " + ex);
-            }
-        }
+        }  
 
         private void donors_Click(object sender, EventArgs e)
         {
@@ -121,10 +83,6 @@ namespace SangriaHealthCenter
 
         }
 
-        private void doctorLogin_Click(object sender, EventArgs e)
-        {
-            Form3 f3 = new Form3(cnn);
-            f3.ShowDialog();
-        }
+     
     }
 }

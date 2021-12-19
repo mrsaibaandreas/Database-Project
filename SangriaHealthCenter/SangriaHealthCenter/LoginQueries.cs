@@ -49,11 +49,13 @@ namespace SangriaHealthCenter
                     {
                         MessageBox.Show("Acces granted");
                     rdr.Close();
+                    cnn.Close();
                         return true;
                     }
                    
                 }
             rdr.Close();
+            cnn.Close();
             MessageBox.Show("NOT");
                 return false;
            

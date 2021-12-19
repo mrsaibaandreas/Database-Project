@@ -29,7 +29,7 @@ namespace SangriaHealthCenter
         /// </summary>
         private void InitializeComponent()
         {
-            this.connect = new System.Windows.Forms.Button();
+       
             this.volunteers = new System.Windows.Forms.Button();
             this.donors = new System.Windows.Forms.Button();
             this.patients = new System.Windows.Forms.Button();
@@ -39,19 +39,8 @@ namespace SangriaHealthCenter
             this.laboratories = new System.Windows.Forms.Button();
             this.bloodBank = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
-            this.doctorLogin = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // connect
-            // 
-            this.connect.Location = new System.Drawing.Point(16, 15);
-            this.connect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.connect.Name = "connect";
-            this.connect.Size = new System.Drawing.Size(125, 41);
-            this.connect.TabIndex = 0;
-            this.connect.Text = "Connect";
-            this.connect.UseVisualStyleBackColor = true;
-            this.connect.Click += new System.EventHandler(this.connect_Click);
+
             // 
             // volunteers
             // 
@@ -141,34 +130,23 @@ namespace SangriaHealthCenter
             this.bloodBank.UseVisualStyleBackColor = true;
             this.bloodBank.Click += new System.EventHandler(this.bloodBank_Click);
             // 
-            // button10
+            // BloodBag
             // 
             this.button10.Location = new System.Drawing.Point(16, 434);
             this.button10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button10.Name = "button10";
+            this.button10.Name = "BloodBag";
             this.button10.Size = new System.Drawing.Size(125, 32);
             this.button10.TabIndex = 9;
             this.button10.Text = "Blood Bag";
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.bloodBagsOnClick);
-            // 
-            // doctorLogin
-            // 
-            this.doctorLogin.Location = new System.Drawing.Point(909, 25);
-            this.doctorLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.doctorLogin.Name = "doctorLogin";
-            this.doctorLogin.Size = new System.Drawing.Size(125, 32);
-            this.doctorLogin.TabIndex = 10;
-            this.doctorLogin.Text = "Login";
-            this.doctorLogin.UseVisualStyleBackColor = true;
-            this.doctorLogin.Click += new System.EventHandler(this.doctorLogin_Click);
+          
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
-            this.Controls.Add(this.doctorLogin);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.bloodBank);
             this.Controls.Add(this.laboratories);
@@ -178,7 +156,6 @@ namespace SangriaHealthCenter
             this.Controls.Add(this.patients);
             this.Controls.Add(this.donors);
             this.Controls.Add(this.volunteers);
-            this.Controls.Add(this.connect);
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Overview";
@@ -189,7 +166,6 @@ namespace SangriaHealthCenter
 
         #endregion
 
-        private System.Windows.Forms.Button connect;
         private System.Windows.Forms.Button volunteers;
         private System.Windows.Forms.Button donors;
         private System.Windows.Forms.Button patients;
@@ -199,7 +175,7 @@ namespace SangriaHealthCenter
         private System.Windows.Forms.Button laboratories;
         private System.Windows.Forms.Button bloodBank;
         private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button doctorLogin;
+      
     }
 }
 

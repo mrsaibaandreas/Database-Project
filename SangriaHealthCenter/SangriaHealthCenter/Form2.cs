@@ -35,7 +35,8 @@ namespace SangriaHealthCenter
         private void CreateMySqlDataReader()
         {
             MySqlCommand myCommand = new MySqlCommand("SELECT * FROM " + tableName, cnn);
-            cnn.Open();
+            if(cnn.State == ConnectionState.Closed)
+                cnn.Open();
             MySqlDataReader myReader;
             myReader = myCommand.ExecuteReader();
             try

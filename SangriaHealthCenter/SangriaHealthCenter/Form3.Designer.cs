@@ -42,6 +42,7 @@ namespace SangriaHealthCenter
             this.StaffId.Name = "StaffId";
             this.StaffId.Size = new System.Drawing.Size(214, 22);
             this.StaffId.TabIndex = 0;
+            this.StaffId.TextChanged += new System.EventHandler(this.StaffId_TextChanged);
             // 
             // password
             // 
