@@ -74,7 +74,7 @@ namespace SangriaHealthCenter
             this.textBoxInput.TabIndex = 3;
             this.textBoxInput.Text = "";
             // 
-            // label1
+            // IdLabel
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(581, 324);
