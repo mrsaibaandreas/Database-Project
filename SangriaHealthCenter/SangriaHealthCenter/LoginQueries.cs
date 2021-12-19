@@ -48,11 +48,12 @@ namespace SangriaHealthCenter
                     if (TempPass == this._password && TempId == this._id)
                     {
                         MessageBox.Show("Acces granted");
+                    rdr.Close();
                         return true;
                     }
-                    else
-                        return false;
+                   
                 }
+            rdr.Close();
             MessageBox.Show("NOT");
                 return false;
            
