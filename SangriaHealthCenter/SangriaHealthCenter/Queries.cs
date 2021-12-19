@@ -98,6 +98,13 @@ namespace SangriaHealthCenter
                 inventory INT(6) UNSIGNED,
                 hospital INT(6) UNSIGNED);";
 
+            const String CreateMedicalStaffUserAccountTable =
+                @"CREATE TABLE IF NOT EXISTS Users(
+                u_id INT(6) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                medicalStaff INT(6) UNSIGNED NOT NULL,
+                password VARCHAR(100) NOT NULL
+                );";
+
             String initQueries = CreateTableVolunteers +
                                  CreateTableDonors +
                                  CreateTablePatients +
@@ -106,7 +113,8 @@ namespace SangriaHealthCenter
                                  CreateTableInventory +
                                  CreateTableMedicalStaff +
                                  CreateTableBloodBag +
-                                 CreateTableLaboratory;
+                                 CreateTableLaboratory + 
+                                 CreateMedicalStaffUserAccountTable;
 
             return initQueries;
         }
@@ -192,6 +200,13 @@ namespace SangriaHealthCenter
                 REFERENCES Inventory(i_id) 
                 ON DELETE CASCADE;";
 
+            const String FkUsersInStaff =
+                @"ALTER TABLE Users
+                ADD CONSTRAINT fk_users_in_medicalStaff
+                FOREIGN KEY (medicalStaff)
+                REFERENCES MedicalStaff(m_id)
+                ON DELETE CASCADE;";
+
             String initFks = FkVolunteerInBloodbank +
                              FkPatientInHospital +
                              FkDonorAtBloodbank +
@@ -202,7 +217,8 @@ namespace SangriaHealthCenter
                              FkMedicalstaffOfHospital +
                              FkMedicalstaffOfLaboratory +
                              FkInventoryOfLaboratory +
-                             FkInventoryOfHospital;
+                             FkInventoryOfHospital +
+                             FkUsersInStaff;
 
             return initFks;
         }
