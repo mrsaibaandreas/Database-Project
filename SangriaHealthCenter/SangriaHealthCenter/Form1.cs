@@ -25,7 +25,7 @@ namespace SangriaHealthCenter
         {
 
         }
-        static string connetionString = "server=localhost;database=db_test;uid=root;pwd=example;";
+        public static string connetionString = "server=localhost;database=db_test;uid=root;pwd=example;";
 
         static MySqlConnection cnn = new MySqlConnection(connetionString);
 
@@ -119,6 +119,12 @@ namespace SangriaHealthCenter
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void doctorLogin_Click(object sender, EventArgs e)
+        {
+            Form3 f3 = new Form3(cnn);
+            f3.ShowDialog();
         }
     }
 }
