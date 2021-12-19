@@ -113,7 +113,7 @@ namespace SangriaHealthCenter
                                  CreateTableInventory +
                                  CreateTableMedicalStaff +
                                  CreateTableBloodBag +
-                                 CreateTableLaboratory + 
+                                 CreateTableLaboratory +
                                  CreateMedicalStaffUserAccountTable;
 
             return initQueries;
@@ -368,6 +368,46 @@ namespace SangriaHealthCenter
                     ('34','n','4650',null,'5'),
                     ('35','n','4400',null,'5');";
 
+            const String PopulateUsers =
+                @"INSERT INTO `Users` (`u_id`, `medicalStaff`, `password`)
+                VALUES
+                    ('1','1','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('2','1','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('3','1','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('4','1','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('5','1','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('6','6','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('7','7','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('8','8','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('9','9','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('10','10','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('11','11','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('12','12','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('13','13','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('14','14','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('15','15','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('16','16','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('17','17','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('18','18','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('19','19','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('20','20','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('21','21','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('22','22','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('23','23','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('24','24','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('25','25','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('26','26','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('27','27','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('28','28','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('29','29','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('30','30','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('31','31','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('32','32','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('33','33','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('34','34','81DC9BDB52D04DC20036DBD8313ED055'),
+                    ('35','35','81DC9BDB52D04DC20036DBD8313ED055');";
+
+
 
 
 
@@ -379,7 +419,8 @@ namespace SangriaHealthCenter
                    PopulateHospital +
                    PopulatePacients +
                    PopulateLaboratory +
-                   PopulateMedicalStaff;
+                   PopulateMedicalStaff +
+                   PopulateUsers;
 
         }
 

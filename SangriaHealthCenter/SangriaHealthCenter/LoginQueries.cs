@@ -12,55 +12,55 @@ namespace SangriaHealthCenter
         private String _id;
         private String _password;
 
-        private static  String CheckIdFromDbQuery =
+        private static String CheckIdFromDbQuery =
             "SELECT u_id, password FROM Users JOIN MedicalStaff ON MedicalStaff.m_id = Users.medicalStaff WHERE Users.u_id = ";
         private static String CheckPassFromDbQuery = " AND Users.password = ";
-        
+
         public LoginQueries(String id, String password)
         {
             this._id = id;
             this._password = CalculateMD5Hash(password);
-          
+
         }
 
         public bool CheckUserAndPassword(MySqlConnection cnn)
         {
 
-                String TempId, TempPass;
-                String check = CheckIdFromDbQuery + "'" + this._id + "'" + CheckPassFromDbQuery + "'" + this._password + "'" + ";";
+            String TempId, TempPass;
+            String check = CheckIdFromDbQuery + "'" + this._id + "'" + CheckPassFromDbQuery + "'" + this._password + "'" + ";";
 
-           
-                MySqlCommand checkIdAndPass = new MySqlCommand(check, cnn);
 
-                if (cnn.State == ConnectionState.Closed)
-                    cnn.Open();
-           
+            MySqlCommand checkIdAndPass = new MySqlCommand(check, cnn);
 
-                MySqlDataReader rdr = null;
+            if (cnn.State == ConnectionState.Closed)
+                cnn.Open();
 
-                 Console.WriteLine(check);
-                rdr = checkIdAndPass.ExecuteReader();
 
-                while (rdr.Read())
+            MySqlDataReader rdr = null;
+
+            Console.WriteLine(check);
+            rdr = checkIdAndPass.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                TempId = rdr["u_id"].ToString();
+                TempPass = rdr["password"].ToString();
+                if (TempPass == this._password && TempId == this._id)
                 {
-                    TempId = rdr["u_id"].ToString();
-                    TempPass = rdr["password"].ToString();
-                    if (TempPass == this._password && TempId == this._id)
-                    {
-                        MessageBox.Show("Acces granted");
+                    MessageBox.Show("Acces granted");
                     rdr.Close();
                     cnn.Close();
-                        return true;
-                    }
-                   
+                    return true;
                 }
+
+            }
             rdr.Close();
             cnn.Close();
             MessageBox.Show("NOT");
-                return false;
-           
+            return false;
+
         }
-        
+
         private static string CalculateMD5Hash(string input)
         {
             MD5 md5 = MD5.Create();

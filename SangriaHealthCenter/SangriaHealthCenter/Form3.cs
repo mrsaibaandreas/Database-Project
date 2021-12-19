@@ -55,11 +55,12 @@ namespace SangriaHealthCenter
         private void login_Click(object sender, EventArgs e)
         {
             LoginQueries logIn = new LoginQueries(StaffId.Text, password.Text);
+            initDB();
             if (logIn.CheckUserAndPassword(cnn))
             {
                 Form1 f1 = new Form1(cnn);
                 f1.ShowDialog();
-                initDB();
+                
             }
         }
 

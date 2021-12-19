@@ -19,16 +19,13 @@ namespace SangriaHealthCenter
         {
             this.cnn = cnn;
             InitializeComponent();
-          
-
-        }  
-
+        }
         private void donors_Click(object sender, EventArgs e)
         {
             Form2 f2 = new Form2("Donors", cnn);
             f2.ShowDialog();
         }
-    
+
         private void hospitals_Click(object sender, EventArgs e)
         {
             Form2 f2 = new Form2("Hospital", cnn);
@@ -75,7 +72,7 @@ namespace SangriaHealthCenter
         {
             Form2 f2 = new Form2("BloodBank", cnn);
             f2.ShowDialog();
-            
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -83,6 +80,6 @@ namespace SangriaHealthCenter
 
         }
 
-     
+
     }
 }
