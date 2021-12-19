@@ -42,34 +42,16 @@ namespace SangriaHealthCenter
 
                 Queries Q = new Queries();
                 MySqlCommand dropTables, createTables, createFKs, populateTables;
-                dropTables = new MySqlCommand(Q.DropTables(), cnn);
-                
 
+                dropTables = new MySqlCommand(Q.DropTables(), cnn);                
                 createTables = new MySqlCommand(Q.InitTablesQueries(), cnn);
                 createFKs = new MySqlCommand(Q.InitFKs(), cnn);
                 populateTables = new MySqlCommand(Q.populateTables(), cnn);
-
-
-
-
 
                 createTables.ExecuteNonQuery();
                 createFKs.ExecuteNonQuery();
                 populateTables.ExecuteNonQuery();
 
-
-                MySqlCommand selectCmd = new MySqlCommand();
-                MySqlDataReader rdr = null;
-
-                selectCmd.Connection = cnn;
-                selectCmd.CommandText = "SELECT * FROM Patients";
-
-                rdr = selectCmd.ExecuteReader();
-
-                while(rdr.Read())
-                {
-                    Console.WriteLine("Name: "+ rdr["name"].ToString());
-                }
                 //dropTables.ExecuteNonQuery();   //DELETING TABLES FOR TESTING PURPUOSES ONLY
                 cnn.Close();
             }
@@ -81,45 +63,60 @@ namespace SangriaHealthCenter
 
         private void donors_Click(object sender, EventArgs e)
         {
-
+            Form2 f2 = new Form2("Donors", cnn);
+            f2.ShowDialog();
         }
     
         private void hospitals_Click(object sender, EventArgs e)
         {
-
+            Form2 f2 = new Form2("Hospital", cnn);
+            f2.ShowDialog();
         }
 
         private void volunteers_Click(object sender, EventArgs e)
         {
-
+            Form2 f2 = new Form2("Volunteers", cnn);
+            f2.ShowDialog();
         }
 
-        private void bloodReserves_Click(object sender, EventArgs e)
+        private void bloodBagsOnClick(object sender, EventArgs e)
         {
-
+            Form2 f2 = new Form2("BloodBag", cnn);
+            f2.ShowDialog();
         }
 
         private void patients_Click(object sender, EventArgs e)
         {
-
+            Form2 f2 = new Form2("Patients", cnn);
+            f2.ShowDialog();
         }
 
         private void laboratories_Click(object sender, EventArgs e)
         {
-
+            Form2 f2 = new Form2("Laboratory", cnn);
+            f2.ShowDialog();
         }
 
         private void medicalStaff_Click(object sender, EventArgs e)
         {
-
+            Form2 f2 = new Form2("MedicalStaff", cnn);
+            f2.ShowDialog();
         }
 
         private void inventory_Click(object sender, EventArgs e)
         {
-
+            Form2 f2 = new Form2("Inventory", cnn);
+            f2.ShowDialog();
         }
 
         private void bloodBank_Click(object sender, EventArgs e)
+        {
+            Form2 f2 = new Form2("BloodBank", cnn);
+            f2.ShowDialog();
+            
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
