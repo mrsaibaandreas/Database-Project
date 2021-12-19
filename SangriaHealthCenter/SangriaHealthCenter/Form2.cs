@@ -17,6 +17,8 @@ namespace SangriaHealthCenter
     {
         private String tableName;
         private MySqlConnection cnn;
+
+        private String table_id;
         public Form2(String table, MySqlConnection con)
         {
             tableName = table;
@@ -38,11 +40,12 @@ namespace SangriaHealthCenter
             myReader = myCommand.ExecuteReader();
             try
             {
-                    for (int i = 0; i < myReader.FieldCount; i++)
-                    {
-                        dataGridView1.Columns.Add(myReader.GetName(i),
-                                                    myReader.GetName(i));
-                    }
+                for (int i = 0; i < myReader.FieldCount; i++)
+                {
+                    dataGridView1.Columns.Add(myReader.GetName(i),
+                                                myReader.GetName(i));
+                }
+                table_id = myReader.GetName(0);
 
                 while (myReader.Read())
                 {
@@ -67,9 +70,6 @@ namespace SangriaHealthCenter
                 cnn.Open();
             try
             {
-                if (cnn.State == ConnectionState.Closed)
-                    cnn.Open();
-
                 String add_commands;
                 add_commands = parseText(textBoxInput.Text);
 
@@ -81,7 +81,7 @@ namespace SangriaHealthCenter
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show("Could not add. " + ex.Message);
+                MessageBox.Show("Could not add.\n" + ex.Message);
             }
             finally
             {
@@ -93,8 +93,29 @@ namespace SangriaHealthCenter
         private void deleteRowButton_Click(object sender, EventArgs e)
         {
 
-            textBoxInput.Text = String.Empty;
-            //CreateMySqlDataReader();
+            if (cnn.State == ConnectionState.Closed)
+                cnn.Open();
+            try
+            {
+                String delete_commands;
+                delete_commands = @"DELETE FROM " + tableName +
+                                    " WHERE " + table_id + " in(" + textBoxInput.Text + ");";
+
+                Console.WriteLine(delete_commands);
+                MySqlCommand deleteRows = new MySqlCommand(delete_commands, cnn);
+                deleteRows.ExecuteNonQuery();
+
+                textBoxInput.Text = String.Empty;
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Could not delete. " + ex.Message);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+    
         }
 
         private String parseText(String input)
