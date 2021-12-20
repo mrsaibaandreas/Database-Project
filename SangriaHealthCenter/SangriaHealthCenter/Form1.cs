@@ -28,7 +28,7 @@ namespace SangriaHealthCenter
 
         private void hospitals_Click(object sender, EventArgs e)
         {
-            Form2 f2 = new Form2("Hospital", cnn);
+            Hospitals f2 = new Hospitals(cnn);
             f2.ShowDialog();
         }
 

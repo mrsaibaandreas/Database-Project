@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using MySqlConnector;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,49 +8,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySqlConnector;
-
 
 namespace SangriaHealthCenter
 {
-    public partial class Form2 : Form
+    public partial class Hospitals : Form
     {
-        private String tableName;
         private MySqlConnection cnn;
-
         private String table_id;
-        public Form2(String table, MySqlConnection con)
+        public Hospitals(MySqlConnection cnn)
         {
-            tableName = table;
-            cnn = con;
+            this.cnn = cnn;
             InitializeComponent();
             CreateMySqlDataReader();
         }
 
-        
-        public Form2(MySqlConnection cnn, String itemNo)
+        private void CreateMySqlDataReader()
         {
-            this.cnn = cnn;
-            InitializeComponent();
-            InitializeInvetoryForItem(itemNo);
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-           
-        }
-
-        private void InitializeInvetoryForItem(String itemNo)
-        {
-            String query = "SELECT i.* FROM Hospital h  JOIN Inventory i ON i.i_id = h.inventory WHERE h.h_id IN( " + "" + itemNo + ");";
-            if (cnn.State == ConnectionState.Closed)
-                cnn.Open();
-            MySqlCommand cmd = new MySqlCommand(query, cnn);
-          
+            MySqlCommand myCommand = new MySqlCommand("SELECT * FROM Hospital", cnn);
             if (cnn.State == ConnectionState.Closed)
                 cnn.Open();
             MySqlDataReader myReader;
-            myReader = cmd.ExecuteReader();
+            myReader = myCommand.ExecuteReader();
             try
             {
                 for (int i = 0; i < myReader.FieldCount; i++)
@@ -72,40 +50,6 @@ namespace SangriaHealthCenter
             }
             finally
             {
-              //  this.Close();
-                myReader.Close();
-                cnn.Close();
-            }
-        }
-
-        private void CreateMySqlDataReader()
-        {
-            MySqlCommand myCommand = new MySqlCommand("SELECT * FROM " + tableName, cnn);
-            if(cnn.State == ConnectionState.Closed)
-                cnn.Open();
-            MySqlDataReader myReader;
-            myReader = myCommand.ExecuteReader();
-            try
-            {
-                for (int i = 0; i < myReader.FieldCount; i++)
-                {
-                    dataGridView1.Columns.Add(myReader.GetName(i),
-                                                myReader.GetName(i));
-                }
-                table_id = myReader.GetName(0);
-
-                while (myReader.Read())
-                {
-                    DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();      
-                    for (int i = 0; i < myReader.FieldCount; i++) //nr of cols
-                    {
-                        row.Cells[i].Value = myReader.GetValue(i);
-                    }             
-                    dataGridView1.Rows.Add(row);
-                }
-            }
-            finally
-            {
                 myReader.Close();
                 cnn.Close();
             }
@@ -113,7 +57,7 @@ namespace SangriaHealthCenter
 
         private void addRowButton_Click(object sender, EventArgs e)
         {
-            if(cnn.State == ConnectionState.Closed)
+            if (cnn.State == ConnectionState.Closed)
                 cnn.Open();
             try
             {
@@ -124,8 +68,8 @@ namespace SangriaHealthCenter
                 addRows.ExecuteNonQuery();
 
                 //Console.WriteLine(parseText(textBoxInput.Text));
-                textBoxInput.Text = String.Empty;    
-                
+                textBoxInput.Text = String.Empty;
+
             }
             catch (MySqlException ex)
             {
@@ -146,7 +90,7 @@ namespace SangriaHealthCenter
             try
             {
                 String delete_commands;
-                delete_commands = @"DELETE FROM " + tableName +
+                delete_commands = @"DELETE FROM " + "Hospital" +
                                     " WHERE " + table_id + " in(" + textBoxInput.Text + ");";
 
                 Console.WriteLine(delete_commands);
@@ -163,50 +107,36 @@ namespace SangriaHealthCenter
             {
                 cnn.Close();
             }
-    
+
         }
 
         private String parseText(String input)
         {
-            String builder = "INSERT INTO " + tableName + " VALUES ";
+            String builder = "INSERT INTO " + "Hospital" + " VALUES ";
             String[] commands = input.Split(';');
-            
-            foreach(String command in commands)
+
+            foreach (String command in commands)
             {
                 String aux = String.Empty;
                 String[] values = command.Split(',');
-                foreach(String value in values)
+                foreach (String value in values)
                 {
                     aux += "'" + value + "',";
                 }
-                aux = aux.Remove(aux.Length-1,1);
+                aux = aux.Remove(aux.Length - 1, 1);
 
-                builder += "("+ aux + "),";
+                builder += "(" + aux + "),";
             }
-            builder = builder.Remove(builder.Length-1,1);
+            builder = builder.Remove(builder.Length - 1, 1);
             builder += ";";
             //Console.WriteLine(builder);
             return builder;
         }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        private void seeInventory_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void textBoxInput_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            Form2 f2 = new Form2(this.cnn,textBoxInput.Text);    
+            f2.ShowDialog();
         }
     }
 }

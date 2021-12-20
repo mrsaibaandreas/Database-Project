@@ -47,7 +47,7 @@ namespace SangriaHealthCenter
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Can not open connection ! " + ex);
+                Console.WriteLine("Can not open connection ! " + ex);
             }
         }
 
