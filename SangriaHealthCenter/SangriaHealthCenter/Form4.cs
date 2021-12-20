@@ -49,13 +49,18 @@ namespace SangriaHealthCenter
                         row.Cells[i].Value = myReader.GetValue(i);
                     }
                     dataGridView2.Rows.Add(row);
-                }
+                }     
             }
             finally
             {
                 myReader.Close();
                 cnn.Close();
             }
+        }
+
+        private void Form4_Load_1(object sender, EventArgs e)
+        {
+
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
