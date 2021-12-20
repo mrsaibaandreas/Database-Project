@@ -110,6 +110,57 @@ namespace SangriaHealthCenter
 
         }
 
+
+        private void updateRowButton_Click(object sender, EventArgs e)
+        {
+            if (cnn.State == ConnectionState.Closed)
+                cnn.Open();
+            try
+            {
+                String update_commands;
+                update_commands = parseText_update(textBoxInput.Text);
+
+                MySqlCommand updateRows = new MySqlCommand(update_commands, cnn);
+                updateRows.ExecuteNonQuery();
+
+                //Console.WriteLine(parseText(textBoxInput.Text));
+                textBoxInput.Text = String.Empty;
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Could not update.\n" + ex.Message);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
+        private String parseText_update(String input)
+        {
+            String builder = "UPDATE " + "Hospital" + " SET ";
+            String[] commandsAndConditions = input.Split(';');
+            String[] commands = commandsAndConditions[0].Split(',');
+            String[] conditions = commandsAndConditions[1].Split(',');
+
+            foreach (String command in commands)
+            {
+                String[] values = command.Split('=');
+                builder += values[0] + " = '" + values[1] + "',";
+            }
+            builder = builder.Remove(builder.Length - 1, 1);
+            builder += " WHERE ";
+
+            foreach (String command in conditions)
+            {
+                String[] values = command.Split('=');
+                builder += values[0] + " = '" + values[1] + "',";
+            }
+            builder = builder.Remove(builder.Length - 1, 1);
+            builder += ";";
+            Console.WriteLine(builder);
+            return builder;
+        }
+
         private String parseText(String input)
         {
             String builder = "INSERT INTO " + "Hospital" + " VALUES ";

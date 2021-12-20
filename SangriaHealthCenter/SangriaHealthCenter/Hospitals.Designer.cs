@@ -36,6 +36,7 @@ namespace SangriaHealthCenter
             this.addRowButton = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.seeInventory = new System.Windows.Forms.Button();
+            this.updateRowButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,7 +91,7 @@ namespace SangriaHealthCenter
             // 
             // seeInventory
             // 
-            this.seeInventory.Location = new System.Drawing.Point(43, 468);
+            this.seeInventory.Location = new System.Drawing.Point(43, 512);
             this.seeInventory.Margin = new System.Windows.Forms.Padding(4);
             this.seeInventory.Name = "seeInventory";
             this.seeInventory.Size = new System.Drawing.Size(113, 39);
@@ -99,11 +100,22 @@ namespace SangriaHealthCenter
             this.seeInventory.UseVisualStyleBackColor = true;
             this.seeInventory.Click += new System.EventHandler(this.seeInventory_Click);
             // 
+            // updateRowButton
+            // 
+            this.updateRowButton.Location = new System.Drawing.Point(43, 465);
+            this.updateRowButton.Margin = new System.Windows.Forms.Padding(4);
+            this.updateRowButton.Name = "updateRowButton";
+            this.updateRowButton.Size = new System.Drawing.Size(113, 39);
+            this.updateRowButton.TabIndex = 11;
+            this.updateRowButton.Text = "Update Row";
+            this.updateRowButton.UseVisualStyleBackColor = true;
+            // 
             // Hospitals
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1104, 549);
+            this.Controls.Add(this.updateRowButton);
             this.Controls.Add(this.seeInventory);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxInput);
@@ -126,5 +138,6 @@ namespace SangriaHealthCenter
         private System.Windows.Forms.Button addRowButton;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button seeInventory;
+        private System.Windows.Forms.Button updateRowButton;
     }
 }
