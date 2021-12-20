@@ -48,6 +48,7 @@ namespace SangriaHealthCenter
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(1035, 334);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
             // 
             // addRowButton
             // 
@@ -62,6 +63,7 @@ namespace SangriaHealthCenter
             // 
             // deleteRowButton
             // 
+
             this.deleteRowButton.Location = new System.Drawing.Point(35, 468);
             this.deleteRowButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.deleteRowButton.Name = "deleteRowButton";
@@ -76,9 +78,11 @@ namespace SangriaHealthCenter
             this.textBoxInput.Location = new System.Drawing.Point(291, 395);
             this.textBoxInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxInput.Name = "textBoxInput";
+
             this.textBoxInput.Size = new System.Drawing.Size(427, 178);
             this.textBoxInput.TabIndex = 3;
             this.textBoxInput.Text = "";
+            this.textBoxInput.TextChanged += new System.EventHandler(this.textBoxInput_TextChanged);
             // 
             // label1
             // 
@@ -89,6 +93,7 @@ namespace SangriaHealthCenter
             this.label1.Size = new System.Drawing.Size(319, 170);
             this.label1.TabIndex = 4;
             this.label1.Text = resources.GetString("label1.Text");
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // updateRowButton
             // 

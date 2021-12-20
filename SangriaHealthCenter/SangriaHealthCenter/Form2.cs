@@ -27,9 +27,55 @@ namespace SangriaHealthCenter
             CreateMySqlDataReader();
         }
 
+        
+        public Form2(MySqlConnection cnn, String itemNo)
+        {
+            this.cnn = cnn;
+            InitializeComponent();
+            InitializeInvetoryForItem(itemNo);
+        }
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
            
+        }
+
+        private void InitializeInvetoryForItem(String itemNo)
+        {
+            String query = "SELECT i.* FROM Hospital h  JOIN Inventory i ON i.i_id = h.inventory WHERE h.h_id IN( " + "" + itemNo + ");";
+            if (cnn.State == ConnectionState.Closed)
+                cnn.Open();
+            MySqlCommand cmd = new MySqlCommand(query, cnn);
+          
+            if (cnn.State == ConnectionState.Closed)
+                cnn.Open();
+            MySqlDataReader myReader;
+            myReader = cmd.ExecuteReader();
+            try
+            {
+                for (int i = 0; i < myReader.FieldCount; i++)
+                {
+                    dataGridView1.Columns.Add(myReader.GetName(i),
+                                                myReader.GetName(i));
+                }
+                table_id = myReader.GetName(0);
+
+                while (myReader.Read())
+                {
+                    DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
+                    for (int i = 0; i < myReader.FieldCount; i++) //nr of cols
+                    {
+                        row.Cells[i].Value = myReader.GetValue(i);
+                    }
+                    dataGridView1.Rows.Add(row);
+                }
+            }
+            finally
+            {
+              //  this.Close();
+                myReader.Close();
+                cnn.Close();
+            }
         }
 
         private void CreateMySqlDataReader()
@@ -78,7 +124,8 @@ namespace SangriaHealthCenter
                 addRows.ExecuteNonQuery();
 
                 //Console.WriteLine(parseText(textBoxInput.Text));
-                textBoxInput.Text = String.Empty;               
+                textBoxInput.Text = String.Empty;    
+                
             }
             catch (MySqlException ex)
             {
@@ -192,6 +239,21 @@ namespace SangriaHealthCenter
             return builder;
         }
         private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void textBoxInput_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
