@@ -125,7 +125,9 @@ enter fields in the following format:
  - for Add Row: $col1_val, $col2_val, ...
  - for multiple Add use " ; " between 
       to separate
-
+ - for Update Row:$col1=$value,$col2=$value, ...;
+      use " ; " to separate conditions from updates
+      $cond1, $cond2, ...
 </value>
   </data>
 </root>
