@@ -22,10 +22,6 @@ namespace SangriaHealthCenter
 
         private void initDB()
         {
-            /* string connetionString = null;
-             MySqlConnection cnn;
-             connetionString = "server=localhost;database=db_test;uid=root;pwd=example;";
-             cnn = new MySqlConnection(connetionString);*/
             try
             {
                 cnn.Open();
@@ -42,7 +38,6 @@ namespace SangriaHealthCenter
                 createFKs.ExecuteNonQuery();
                 populateTables.ExecuteNonQuery();
 
-                //dropTables.ExecuteNonQuery();   //DELETING TABLES FOR TESTING PURPUOSES ONLY
                 cnn.Close();
             }
             catch (Exception ex)
@@ -65,6 +60,11 @@ namespace SangriaHealthCenter
         }
 
         private void StaffId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form3_Load(object sender, EventArgs e)
         {
 
         }

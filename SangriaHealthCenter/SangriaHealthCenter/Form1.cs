@@ -72,7 +72,6 @@ namespace SangriaHealthCenter
         {
             Form2 f2 = new Form2("BloodBank", cnn);
             f2.ShowDialog();
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -121,7 +120,7 @@ namespace SangriaHealthCenter
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form4 f4 = new Form4(@"SELECT h_id FROM Hospital
+            Form4 f4 = new Form4(@"SELECT h_id, name FROM Hospital
                                    WHERE h_id IN
                                    (SELECT hospital FROM MedicalStaff ms
                                    JOIN Users u ON    u.medicalStaff = ms.m_id
@@ -161,7 +160,7 @@ namespace SangriaHealthCenter
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Form4 f4 = new Form4(@"SELECT h.h_id
+            Form4 f4 = new Form4(@"SELECT h.h_id, h.name
                                    FROM Hospital h
                                    JOIN Inventory i ON i.i_id = h.inventory
                                    WHERE
@@ -181,7 +180,7 @@ namespace SangriaHealthCenter
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Form4 f4 = new Form4(@"SELECT l.l_id
+            Form4 f4 = new Form4(@"SELECT l.*
                                    FROM Laboratory l
                                    JOIN Inventory i ON i.i_id = l.inventory
                                    WHERE
@@ -201,7 +200,7 @@ namespace SangriaHealthCenter
 
         private void button7_Click(object sender, EventArgs e)
         {
-            Form4 f4 = new Form4(@"SELECT COUNT(p_id), h.name
+            Form4 f4 = new Form4(@"SELECT COUNT(p_id) AS emergencies, h.name
                                 FROM Patients p
                                 JOIN Hospital h ON p.hospital = h.h_id
                                 WHERE p.emergency = 1

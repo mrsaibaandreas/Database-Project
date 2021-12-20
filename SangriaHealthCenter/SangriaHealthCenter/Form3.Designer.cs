@@ -38,25 +38,28 @@ namespace SangriaHealthCenter
             // 
             // StaffId
             // 
-            this.StaffId.Location = new System.Drawing.Point(51, 75);
+            this.StaffId.Location = new System.Drawing.Point(38, 61);
+            this.StaffId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.StaffId.Name = "StaffId";
-            this.StaffId.Size = new System.Drawing.Size(214, 22);
+            this.StaffId.Size = new System.Drawing.Size(162, 20);
             this.StaffId.TabIndex = 0;
             this.StaffId.TextChanged += new System.EventHandler(this.StaffId_TextChanged);
             // 
             // password
             // 
-            this.password.Location = new System.Drawing.Point(51, 127);
+            this.password.Location = new System.Drawing.Point(38, 103);
+            this.password.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.password.Name = "password";
-            this.password.Size = new System.Drawing.Size(214, 22);
-            this.password.TabIndex = 1;
             this.password.PasswordChar = '*';
+            this.password.Size = new System.Drawing.Size(162, 20);
+            this.password.TabIndex = 1;
             // 
             // login
             // 
-            this.login.Location = new System.Drawing.Point(190, 169);
+            this.login.Location = new System.Drawing.Point(142, 137);
+            this.login.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.login.Name = "login";
-            this.login.Size = new System.Drawing.Size(75, 28);
+            this.login.Size = new System.Drawing.Size(56, 23);
             this.login.TabIndex = 2;
             this.login.Text = "Login";
             this.login.UseVisualStyleBackColor = true;
@@ -65,33 +68,37 @@ namespace SangriaHealthCenter
             // IdLabel
             // 
             this.IdLabel.AutoSize = true;
-            this.IdLabel.Location = new System.Drawing.Point(48, 55);
+            this.IdLabel.Location = new System.Drawing.Point(36, 45);
+            this.IdLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.IdLabel.Name = "IdLabel";
-            this.IdLabel.Size = new System.Drawing.Size(54, 17);
+            this.IdLabel.Size = new System.Drawing.Size(43, 13);
             this.IdLabel.TabIndex = 3;
             this.IdLabel.Text = "Staff ID";
             // 
             // PasswordLabel
             // 
             this.PasswordLabel.AutoSize = true;
-            this.PasswordLabel.Location = new System.Drawing.Point(48, 107);
+            this.PasswordLabel.Location = new System.Drawing.Point(36, 87);
+            this.PasswordLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.PasswordLabel.Name = "PasswordLabel";
-            this.PasswordLabel.Size = new System.Drawing.Size(69, 17);
+            this.PasswordLabel.Size = new System.Drawing.Size(53, 13);
             this.PasswordLabel.TabIndex = 4;
-            this.PasswordLabel.Text = "Password"; 
+            this.PasswordLabel.Text = "Password";
             // 
             // Form3
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(321, 235);
+            this.ClientSize = new System.Drawing.Size(241, 191);
             this.Controls.Add(this.PasswordLabel);
             this.Controls.Add(this.IdLabel);
             this.Controls.Add(this.login);
             this.Controls.Add(this.password);
             this.Controls.Add(this.StaffId);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form3";
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.Form3_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

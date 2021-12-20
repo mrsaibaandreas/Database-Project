@@ -71,8 +71,7 @@ namespace SangriaHealthCenter
                 }
             }
             finally
-            {
-              //  this.Close();
+            {                
                 myReader.Close();
                 cnn.Close();
             }
@@ -177,8 +176,7 @@ namespace SangriaHealthCenter
 
                 MySqlCommand updateRows = new MySqlCommand(update_commands, cnn);
                 updateRows.ExecuteNonQuery();
-
-                //Console.WriteLine(parseText(textBoxInput.Text));
+              
                 textBoxInput.Text = String.Empty;
             }
             catch (MySqlException ex)
@@ -209,7 +207,7 @@ namespace SangriaHealthCenter
             }
             builder = builder.Remove(builder.Length-1,1);
             builder += ";";
-            //Console.WriteLine(builder);
+            
             return builder;
         }
 

@@ -41,7 +41,7 @@ namespace SangriaHealthCenter
                 while (myReader.Read())
                 {
                     DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
-                    for (int i = 0; i < myReader.FieldCount; i++) //nr of cols
+                    for (int i = 0; i < myReader.FieldCount; i++) 
                     {
                         row.Cells[i].Value = myReader.GetValue(i);
                     }
@@ -67,9 +67,7 @@ namespace SangriaHealthCenter
                 MySqlCommand addRows = new MySqlCommand(add_commands, cnn);
                 addRows.ExecuteNonQuery();
 
-                //Console.WriteLine(parseText(textBoxInput.Text));
                 textBoxInput.Text = String.Empty;
-
             }
             catch (MySqlException ex)
             {
@@ -84,7 +82,6 @@ namespace SangriaHealthCenter
 
         private void deleteRowButton_Click(object sender, EventArgs e)
         {
-
             if (cnn.State == ConnectionState.Closed)
                 cnn.Open();
             try
@@ -123,7 +120,6 @@ namespace SangriaHealthCenter
                 MySqlCommand updateRows = new MySqlCommand(update_commands, cnn);
                 updateRows.ExecuteNonQuery();
 
-                //Console.WriteLine(parseText(textBoxInput.Text));
                 textBoxInput.Text = String.Empty;
             }
             catch (MySqlException ex)
@@ -180,7 +176,6 @@ namespace SangriaHealthCenter
             }
             builder = builder.Remove(builder.Length - 1, 1);
             builder += ";";
-            //Console.WriteLine(builder);
             return builder;
         }
 
@@ -188,6 +183,11 @@ namespace SangriaHealthCenter
         {
             Form2 f2 = new Form2(this.cnn,textBoxInput.Text);    
             f2.ShowDialog();
+        }
+
+        private void Hospitals_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
