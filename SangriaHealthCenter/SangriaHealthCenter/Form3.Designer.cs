@@ -50,6 +50,7 @@ namespace SangriaHealthCenter
             this.password.Name = "password";
             this.password.Size = new System.Drawing.Size(214, 22);
             this.password.TabIndex = 1;
+            this.password.PasswordChar = '*';
             // 
             // login
             // 
@@ -77,7 +78,7 @@ namespace SangriaHealthCenter
             this.PasswordLabel.Name = "PasswordLabel";
             this.PasswordLabel.Size = new System.Drawing.Size(69, 17);
             this.PasswordLabel.TabIndex = 4;
-            this.PasswordLabel.Text = "Password";
+            this.PasswordLabel.Text = "Password"; 
             // 
             // Form3
             // 

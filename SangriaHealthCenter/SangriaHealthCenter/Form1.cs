@@ -80,7 +80,7 @@ namespace SangriaHealthCenter
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+         private void label1_Click(object sender, EventArgs e)
         {
 
         }
@@ -131,7 +131,13 @@ namespace SangriaHealthCenter
 
         private void button7_Click(object sender, EventArgs e)
         {
-            Form4 f4 = new Form4("Donors", cnn);
+            Form4 f4 = new Form4(@"SELECT COUNT(p_id), h.name
+                                FROM Patients p
+                                JOIN Hospital h ON p.hospital = h.h_id
+                                WHERE p.emergency = 1
+                                GROUP BY h.name
+                                HAVING COUNT(p_id) >= 1
+                                ORDER BY COUNT(p_id) DESC", cnn);
             f4.ShowDialog();
 
         }
