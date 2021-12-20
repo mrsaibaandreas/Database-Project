@@ -97,7 +97,12 @@ namespace SangriaHealthCenter
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form4 f4 = new Form4("SELECT * FROM MedicalStaff", cnn);
+            Form4 f4 = new Form4(@"SELECT h_id FROM Hospital
+                                   WHERE h_id IN
+                                   (SELECT hospital FROM MedicalStaff ms
+                                   JOIN Users u ON    u.medicalStaff = ms.m_id
+                                   WHERE EXISTS(SELECT COUNT(*) FROM MedicalStaff WHERE MedicalStaff.m_id = u.medicalStaff)
+                                   GROUP BY hospital); ", cnn);
             f4.ShowDialog();
         }
 
@@ -117,14 +122,40 @@ namespace SangriaHealthCenter
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Form4 f4 = new Form4("Donors", cnn);
+            Form4 f4 = new Form4(@"SELECT h.h_id
+                                   FROM Hospital h
+                                   JOIN Inventory i ON i.i_id = h.inventory
+                                   WHERE
+                                   (needles < 10 OR   
+                                   vacutainers < 10 OR
+                                   gloves < 10 OR    
+                                   bloodbags < 10 OR    
+                                   tourniquet < 10 OR    
+                                   seringe < 10 OR
+                                   lancet < 10 OR    
+                                   sponges < 10 OR
+                                   glucometers < 10 OR
+                                   sharps_container < 10)", cnn);
             f4.ShowDialog();
 
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Form4 f4 = new Form4("Donors", cnn);
+            Form4 f4 = new Form4(@"SELECT l.l_id
+                                   FROM Laboratory l
+                                   JOIN Inventory i ON i.i_id = l.inventory
+                                   WHERE
+                                   (needles < 10 OR
+                                   vacutainers < 10 OR
+                                   gloves < 10 OR
+                                   bloodbags < 10 OR
+                                   tourniquet < 10 OR
+                                   seringe < 10 OR
+                                   lancet < 10 OR
+                                   sponges < 10 OR
+                                   glucometers < 10 OR
+                                   sharps_container < 10)", cnn);
             f4.ShowDialog();
 
         }
