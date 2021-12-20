@@ -94,5 +94,46 @@ namespace SangriaHealthCenter
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form4 f4 = new Form4("SELECT * FROM MedicalStaff", cnn);
+            f4.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form4 f4 = new Form4("Donors", cnn);
+            f4.ShowDialog();
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Form4 f4 = new Form4("Donors", cnn);
+            f4.ShowDialog();
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Form4 f4 = new Form4("Donors", cnn);
+            f4.ShowDialog();
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Form4 f4 = new Form4("Donors", cnn);
+            f4.ShowDialog();
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Form4 f4 = new Form4("Donors", cnn);
+            f4.ShowDialog();
+
+        }
     }
 }
