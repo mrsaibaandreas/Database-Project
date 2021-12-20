@@ -125,13 +125,13 @@ namespace SangriaHealthCenter
                 cnn.Open();
             try
             {
-                //String update_commands;
-                //update_commands = parseText_update(textBoxInput.Text);
+                String update_commands;
+                update_commands = parseText_update(textBoxInput.Text);
 
-                //MySqlCommand updateRows = new MySqlCommand(update_commands, cnn);
-                //updateRows.ExecuteNonQuery();
+                MySqlCommand updateRows = new MySqlCommand(update_commands, cnn);
+                updateRows.ExecuteNonQuery();
 
-                Console.WriteLine(parseText(textBoxInput.Text));
+                //Console.WriteLine(parseText(textBoxInput.Text));
                 textBoxInput.Text = String.Empty;
             }
             catch (MySqlException ex)
@@ -179,16 +179,16 @@ namespace SangriaHealthCenter
                 builder += values[0] + " = '" + values[1] + "',"; 
             }
             builder = builder.Remove(builder.Length - 1, 1);
-            builder += " WHERE";
+            builder += " WHERE ";
 
-            foreach (String command in commands)
+            foreach (String command in conditions)
             {
                 String[] values = command.Split('=');
                 builder += values[0] + " = '" + values[1] + "',";
             }
             builder = builder.Remove(builder.Length - 1, 1);
             builder += ";";
-            //Console.WriteLine(builder);
+            Console.WriteLine(builder);
             return builder;
         }
         private void richTextBox1_TextChanged(object sender, EventArgs e)
