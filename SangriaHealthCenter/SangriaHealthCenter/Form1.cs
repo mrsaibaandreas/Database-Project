@@ -96,8 +96,31 @@ namespace SangriaHealthCenter
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            Form4 f4 = new Form4("SELECT * FROM MedicalStaff", cnn);
+        { 
+            const String s1 = 
+                @"SELECT bloodbank FROM Volunteers v JOIN BloodBank bb ON v.bloodbank=bb.b_id 
+                    WHERE
+                    (SELECT COUNT(*) FROM Volunteers WHERE Volunteers.bloodbank = bb.b_id
+                    AND Volunteers.role = 'FB')>=";
+            const String s2 =
+                @" AND 
+                    (SELECT COUNT(*) FROM Volunteers WHERE Volunteers.bloodbank=bb.b_id 
+                    AND Volunteers.role='IG')>=";
+            const String s3 =
+                @" AND
+                    (SELECT COUNT(*) FROM Volunteers WHERE Volunteers.bloodbank=bb.b_id 
+                    AND Volunteers.role='ADS')>=";
+            const String s4 =
+                @" AND 
+                    (SELECT COUNT(*) FROM Volunteers WHERE Volunteers.bloodbank=bb.b_id 
+                    AND Volunteers.role='FLY')>=";
+            const String s5 =
+                @" GROUP BY bloodbank;";
+
+            String query = s1 + textBox1.Text + s2 + textBox1.Text + s3 + textBox1.Text + s4 + textBox1.Text + s5;
+            Console.WriteLine(query);
+
+            Form4 f4 = new Form4(query, cnn);
             f4.ShowDialog();
         }
 
@@ -110,9 +133,15 @@ namespace SangriaHealthCenter
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Form4 f4 = new Form4("Donors", cnn);
-            f4.ShowDialog();
+            String query =
+                @"SELECT d.name, d.surname, d.phone, d.email from Donors d 
+                    JOIN BloodBank b on d.bloodbank = b.b_id
+                    WHERE d.regular = 1 and b.b_id in";
 
+            query += "(" + textBox4.Text + ");";
+            Console.WriteLine(query);
+            Form4 f4 = new Form4(query, cnn);
+            f4.ShowDialog();
         }
 
         private void button5_Click(object sender, EventArgs e)
