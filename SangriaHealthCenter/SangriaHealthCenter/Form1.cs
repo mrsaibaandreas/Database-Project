@@ -85,11 +85,6 @@ namespace SangriaHealthCenter
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void label5_Click(object sender, EventArgs e)
         {
 
@@ -126,9 +121,29 @@ namespace SangriaHealthCenter
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form4 f4 = new Form4("Donors", cnn);
+            Form4 f4 = new Form4(@"SELECT h_id FROM Hospital
+                                   WHERE h_id IN
+                                   (SELECT hospital FROM MedicalStaff ms
+                                   JOIN Users u ON    u.medicalStaff = ms.m_id
+                                   WHERE EXISTS(SELECT COUNT(*) FROM MedicalStaff WHERE MedicalStaff.m_id = u.medicalStaff)
+                                   GROUP BY hospital);", cnn);
             f4.ShowDialog();
 
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            String[] btp = textBox2.Text.Split(',');
+            String query = @"SELECT CASE WHEN EXISTS (SELECT * FROM  Patients p WHERE p.p_id =" + textBox3.Text +
+            @" AND
+            (SELECT COUNT(*) FROM BloodBag b WHERE b.b_group = p.b_group AND b.content = 'b')>=" + btp[0] +
+            @" AND
+            (SELECT COUNT(*) FROM BloodBag b WHERE b.b_group = p.b_group AND b.content = 't')>=" + btp[1] +
+            @" AND
+            (SELECT COUNT(*) FROM BloodBag b WHERE b.b_group = p.b_group AND b.content = 'p')>=" + btp[2]+
+            ") THEN TRUE ELSE FALSE END AS ans";
+            Form4 f4 = new Form4(query, cnn);
+            f4.ShowDialog();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -146,14 +161,40 @@ namespace SangriaHealthCenter
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Form4 f4 = new Form4("Donors", cnn);
+            Form4 f4 = new Form4(@"SELECT h.h_id
+                                   FROM Hospital h
+                                   JOIN Inventory i ON i.i_id = h.inventory
+                                   WHERE
+                                   (needles < 5 OR   
+                                   vacutainers < 5 OR
+                                   gloves < 5 OR    
+                                   bloodbags < 5 OR    
+                                   tourniquet < 5 OR    
+                                   seringe < 5 OR
+                                   lancet < 5 OR    
+                                   sponges < 5 OR
+                                   glucometers < 5 OR
+                                   sharps_container < 5)", cnn);
             f4.ShowDialog();
 
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Form4 f4 = new Form4("Donors", cnn);
+            Form4 f4 = new Form4(@"SELECT l.l_id
+                                   FROM Laboratory l
+                                   JOIN Inventory i ON i.i_id = l.inventory
+                                   WHERE
+                                   (needles < 5 OR
+                                   vacutainers < 5 OR
+                                   gloves < 5 OR
+                                   bloodbags < 5 OR
+                                   tourniquet < 5 OR
+                                   seringe < 5 OR
+                                   lancet < 5 OR
+                                   sponges < 5 OR
+                                   glucometers < 5 OR
+                                   sharps_container < 5)", cnn);
             f4.ShowDialog();
 
         }
